@@ -1,5 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
+# Copyright (c) 2023 Florian Paul Azim Hoberg @gyptazy <gyptazy@gyptazy.ch>
+# All rights reserved
+#
+# This software is a derivative of the original makesite.py.
+# The license text of the original makesite.py is included below.
 # The MIT License (MIT)
 #
 # Copyright (c) 2018-2022 Sunaina Pai
@@ -57,7 +62,7 @@ def log(msg, *args):
     sys.stderr.write(msg.format(*args) + '\n')
 
 
-def truncate(text, words=25):
+def truncate(text, words=150):
     """Remove tags and truncate text to the specified number of words."""
     return ' '.join(re.sub('(?s)<.*?>', ' ', text).split()[:words])
 
@@ -170,14 +175,19 @@ def main():
     # Create a new _site directory from scratch.
     if os.path.isdir('_site'):
         shutil.rmtree('_site')
-    shutil.copytree('static', '_site')
+    shutil.copytree('assets', '_site/assets')
 
     # Default parameters.
     params = {
+        'name': 'manpageblog',
+        'description': '',
+        'copyright': 'manpageblog.dev',
         'base_path': '',
-        'subtitle': 'Lorem Ipsum',
+        'subtitle': 'manpageblog - a small and lightweight blog engine.',
         'author': 'Admin',
         'site_url': 'http://localhost:8000',
+        '_version': '1.0',
+        'profile_mastodon': 'https://mastodon.bsd.cafe/@gyptazy',
         'current_year': datetime.datetime.now().year
     }
 

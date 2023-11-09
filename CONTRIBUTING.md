@@ -9,7 +9,7 @@ this project:
     and might be accepted. But major features or changes that increase
     the complexity of the code will not be accepted.
 
- 2. Follow [PEP 8][CODING-GUIDE] while editing [makesite.py].
+ 2. Follow [PEP 8][CODING-GUIDE] while editing [manpageblog].
 
  3. Use only Makefile syntax, shell syntax, commands, and options that
     are specified in [POSIX][POSIX-HOME] as much as possible while
@@ -22,7 +22,7 @@ this project:
     writing Git commit messages.
 
 
-[makesite.py]: makesite.py
+[manpageblog]: manpageblog
 [Makefile]: Makefile
 [POSIX-HOME]: https://pubs.opengroup.org/onlinepubs/9699919799/
 [POSIX-SCL]: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html

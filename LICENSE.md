@@ -1,5 +1,10 @@
 The MIT License (MIT)
 =====================
+Copyright (c) 2023 Florian Paul Azim Hoberg @gyptazy <gyptazy@gyptazy.ch>
+All rights reserved
+
+This software is a derivative of the original makesite.py.
+The license text of the original makesite.py is included below.
 
 Copyright (c) 2018-2022 Sunaina Pai
 
