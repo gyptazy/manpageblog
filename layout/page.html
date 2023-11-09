@@ -1,27 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ title }} - {{ subtitle }}</title>
+    <title>{{ title }} | {{ subtitle }}</title>
+    <meta name="description" content="{{ meta_description }}"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="{{ base_path }}/css/style.css">
+    <meta name="robots" content="INDEX,FOLLOW">
+    <meta name="generator" content="manpageblog {{ _version }}" />
+    <link rel="stylesheet" type="text/css" href="{{ base_path }}/assets/css/style.css">
+    <link rel="shortcut icon" href="{{ base_path }}/assets/manpageblog.ico" />
+    <link href="{{ profile_mastodon }}" rel="me">
 </head>
 
 <body id="{{ slug }}">
 
+<manpage>
+    <b>NAME</b><br>
+</manpage>
+
+<name>
+    <section>
+        <span class="name">
+            {{ name }}
+        </span>
+    </section>
+</name>
+
+<manpage>
+    <br><b>OPTIONS</b><br>
+</manpage>
+
+
 <nav>
 <section>
     <span class="home">
-        <a href="{{ base_path }}/">Home</a>
-    </span>
-    <span class="links">
-        <a href="{{ base_path }}/blog/">Blog</a>
-        <a href="{{ base_path }}/news/">News</a>
-        <a href="{{ base_path }}/contact/">Contact</a>
-        <a href="{{ base_path }}/about/">About</a>
+        <a href="{{ base_path }}/">[home]</a>
+        <a href="{{ base_path }}/blog/">[blog]</a>
+        <a href="{{ base_path }}/about/">[about]</a>
+        <a href="{{ base_path }}/contact/">[contact]</a>
     </span>
 </section>
 </nav>
+
+<manpage>
+    <br><b>CONTENT</b><br>
+</manpage>
 
 <main>
 {{ content }}
@@ -29,12 +52,7 @@
 
 <footer>
 <section>
-<p>&copy; {{ current_year }} Lorem Ipsum</p>
-<p>
-    <a href="https://twitter.com/sunainapai">Twitter</a>
-    <a href="https://github.com/sunainapai">GitHub</a>
-    <a href="https://www.example.com/">Example</a>
-</p>
+<p>&copy; {{ current_year }} {{ copyright }}</p>
 </section>
 </footer>
 
