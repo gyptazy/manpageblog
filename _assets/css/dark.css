@@ -1,0 +1,47 @@
+body {
+    background-color: #000000;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a:link, a:visited {
+      color: #d3d3d3;
+      text-decoration: underline dotted;
+  }
+
+  a:hover, a:active {
+      color: #d3d3d3;
+      text-decoration: underline dotted;
+  }
+
+  header section, footer section, manpage {
+      color: #d3d3d3;
+      font-size: 14px;
+      font-family: "Courier New", monospace;
+      margin-left: 0%;
+      max-width: 40em;
+  }
+
+  main, nav section, name section {
+      color: #d3d3d3;
+      max-width: 60em;
+      font-size: 14px;
+      font-family: "Courier New", monospace;
+      margin-left: 5%;
+      margin-right: auto;
+      padding: 0 0.5em;
+  }
+
+  code {
+      color: #d3d3d3;
+      max-width: 60em;
+      font-size: 14px;
+      font-style: italic;
+      font-family: "Courier New", monospace;
+      margin-left: 10%;
+      margin-right: auto;
+      padding: 0 0.5em;
+  }
