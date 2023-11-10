@@ -1,0 +1,6 @@
+added:
+  - Initial release of the manpageblog (creates version 1.0) (#1)
+  - Added darkmode support (#1)
+  - Added manpage style layout (#1)
+  - Added multi blog support (#1)
+  - Added dynmaic template, assets and output support (#1) 
