@@ -8,6 +8,10 @@ A Simple and static blog generator in manpage design - written in Python.
 
 ## Table of Content
 * General
+* Usage
+    * Options
+    * Config File
+* Quick-Start
 * Motivation
 * License
 
@@ -19,6 +23,65 @@ Python's readability and straightforward syntax make the blog engine easy to cus
 The lightweight nature also contributes to faster loading times, improving user experience and search engine rankings. Overall, a small, lightweight blog engine in Python combines simplicity, flexibility, and efficiency, making it an ideal choice for those prioritizing a streamlined and customizable blogging experience.
 
 To support this small and lightweight expression of the blog engine the default theme represents a `man page` (manual page or also known as handbook) design which provides all needed information in a simple document.
+
+## Usage
+`manpageblog` is a pretty easy, slim and straight forward tool. After checking out this repository it is enough to simply run the following command:
+```
+$> ./manpageblog
+```
+This command directly creates an example blog within the subdirectory `docroot` by the given example content from `content`.
+
+Adding and modifying content is only done within the `content` directory. This approach makes it easy to obtain the content for the blog from a git repository. All content is provided by flat files like `.md` (Markdown) and/or `.html`.
+
+### Options
+`manpageblog` supports the following options:
+
+| Option | Example | Description |
+|------|:------:|------:|
+| -c | -c gyptazy.conf | Defines a config file for a specific blog |
+| -h | --help | Prints the help page |
+
+By creating multiple config files and adjusting them to dedicated output directories (and if needed templates & assets), this provides a multi blog setup.
+
+### Config File
+The configuration file (default `blog.conf`) provides the following configuration files. You may adjust them to your personal needs:
+
+#### [general]
+| Option | Example | Description |
+|------|:------:|------:|
+| name | manpageblog | Defines the first part of the title (and HTML title) |
+| subtitle | a small and lightweight blog engine. | Defines the second part of the title (and HTML title)  |
+| description | This is the blog of manpageblog where you can find more information | Defines the HTML meta descriptions (for searchengines) |
+| author | admin | A default name for the author of blog posts |
+| copyright | manpageblog | name of a copyright holder |
+| preview_words | 150 (default) | How many words should be displayed within the blog index page |
+
+#### [social]
+| Option | Example | Description |
+|------|:------:|------:|
+| mastodon | https://mastodon.bsd.cafe/@manpageblog | Link to Mastodon profile |
+| twitter | https://twitter.com/manpageblog | Link to Twitter profile|
+| github | https://github.com/manpageblog | Link to GitHub profile |
+
+#### [processing]
+| Option | Example | Description |
+|------|:------:|------:|
+| site_url | http://localhost:8000 | URI (site url) where this blog is hosted |
+| base_path | None | Path to the blog (subdirectory, if not in docroot) |
+| assets_path | _assets | Path to the manpageblog assets |
+| template_path | _templates | Path to the manpageblog assets |
+| output_path | docroot | Output path to the generated blog |
+| theme | light | Defines the theme to use |
+
+## Quick-Start
+To give this just a short test you can just run the following commands:
+```
+git clone https://github.com/gyptazy/manpageblog.git
+cd manpageblog
+./manpageblog
+python3 -m http.server
+```
+Afterwards, just open your browser and visit `http://localhost:8000`. That's it!
 
 ## Motivation
 Like probably the most ones I started with Worpess which is a pretty cool but very bloated software for a personal blog. Running such a software requires multiple application with different dependencies, continuous updates and more resources on the system to serve the whole content. Creating additional backups for the docroot and the database require additional time and efforts. All of this is not really necessary when the content is more or less static and comments are deactivated. A flat file approach provides the optional possibility to run and keep everything in git. Generated HTML pages can easily be served even on low resource systems like Raspberry PI etc.
