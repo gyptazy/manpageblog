@@ -79,6 +79,7 @@ To give this just a short test you can just run the following commands:
 git clone https://github.com/gyptazy/manpageblog.git
 cd manpageblog
 ./manpageblog
+cd docroot
 python3 -m http.server
 ```
 Afterwards, just open your browser and visit `http://localhost:8000`. That's it!
