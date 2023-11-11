@@ -62,19 +62,55 @@ def parse_config(config_file):
         sys.exit(2)
 
 
-def fread(filename):
+def validate(config):
+    """ Validate config file for mandatory options """
+    log_error = False
+
+    if len(config['general']['name']) == 0:
+        log('Error: Mandatory field "name" missing.')
+        log_error = True
+
+    if len(config['general']['description']) == 0:
+        log('Error: Mandatory field "description" missing.')
+        log_error = True
+
+    if len(config['general']['subtitle']) == 0:
+        log('Error: Mandatory field "subtitle" missing.')
+        log_error = True
+
+    if len(config['processing']['site_url']) == 0:
+        log('Error: Mandatory field "site_url" missing.')
+        log_error = True
+
+    if len(config['processing']['assets']) == 0:
+        log('Error: Mandatory field "assets" missing.')
+        log_error = True
+
+    if len(config['processing']['template_path']) == 0:
+        log('Error: Mandatory field "template_path" missing.')
+        log_error = True
+
+    if len(config['processing']['output_path']) == 0:
+        log('Error: Mandatory field "output_path" missing.')
+        log_error = True
+
+    if log_error:
+        sys.exit(1)
+
+
+def fread(file_name):
     """ Read file and close the file """
-    with open(filename, 'r') as f:
+    with open(file_name, 'r') as f:
         return f.read()
 
 
-def fwrite(filename, text):
+def fwrite(file_name, text):
     """ Write content to file and close the file """
-    basedir = os.path.dirname(filename)
+    basedir = os.path.dirname(file_name)
     if not os.path.isdir(basedir):
         os.makedirs(basedir)
 
-    with open(filename, 'w') as f:
+    with open(file_name, 'w') as f:
         f.write(text)
 
 
@@ -83,7 +119,7 @@ def log(msg, *args):
     sys.stderr.write(msg.format(*args) + '\n')
 
 
-def truncate(text, words=150):
+def truncate(text, words):
     """ Remove tags and truncate text to the specified number of words """
     return ' '.join(re.sub('(?s)<.*?>', ' ', text).split()[:words])
 
@@ -127,8 +163,8 @@ def read_content(filename):
         try:
             import commonmark
             text = commonmark.commonmark(text)
-        except ImportError as e:
-            log('WARNING: Cannot render Markdown in {}: {}', filename, str(e))
+        except ImportError as error:
+            log('WARNING: Cannot render Markdown in {}: {}', filename, str(error))
 
     # Update the dictionary with content and RFC 2822 date.
     content.update({
@@ -172,13 +208,13 @@ def make_pages(src, dst, layout, **params):
     return sorted(items, key=lambda x: x['date'], reverse=True)
 
 
-def make_list(posts, dst, list_layout, item_layout, **params):
+def make_list(config, posts, dst, list_layout, item_layout, **params):
     """ Generate list page for a blog """
     items = []
 
     for post in posts:
         item_params = dict(params, **post)
-        item_params['summary'] = truncate(post['content'])
+        item_params['summary'] = truncate(post['content'], int(config['general'].get('preview_words', 150)))
         item = render(item_layout, **item_params)
         items.append(item)
 
@@ -194,6 +230,7 @@ def main():
     """ Run manpageblog """
     arguments = parse_arguments()
     config = parse_config(arguments.config)
+    validate(config)
 
     # Create a new directory from scratch
     # WARNING: If enabled this will remove the whole directory including all files!
@@ -206,18 +243,18 @@ def main():
 
     # Remap vars from config
     params = {
-        '_version': '1.0',
+        '_version': '1.1',
         'name': config['general']['name'],
         'description': config['general']['description'],
         'subtitle': config['general']['subtitle'],
-        'author': config['general']['author'],
-        'copyright': config['general']['copyright'],
-        'profile_mastodon': config['social']['mastodon'],
-        'profile_twitter': config['social']['twitter'],
-        'profile_github': config['social']['github'],
+        'author': config['general'].get('author', 'unknown'),
+        'copyright': config['general'].get('copyright', 'manpageblog'),
+        'profile_mastodon': config['social'].get('mastodon', 'unknown'),
+        'profile_twitter': config['social'].get('twitter', 'unknown'),
+        'profile_github': config['social'].get('github', 'unknown'),
         'site_url': config['processing']['site_url'],
         'base_path': config['processing']['base_path'],
-        'theme': config['processing']['theme'],
+        'theme': config['processing'].get('theme', 'light'),
         'current_year': datetime.datetime.now().year
     }
 
@@ -241,10 +278,10 @@ def main():
     blog_posts = make_pages('content/blog/*.md',   config['processing']['output_path']+'/blog/{{ slug }}/index.html', post_layout, blog='blog', **params)
 
     # Create blog list pages
-    make_list(blog_posts, config['processing']['output_path']+'/blog/index.html', list_layout, item_layout, blog='blog', title='Blog', **params)
+    make_list(config, blog_posts, config['processing']['output_path']+'/blog/index.html', list_layout, item_layout, blog='blog', title='Blog', **params)
 
     # Create RSS feeds
-    make_list(blog_posts, config['processing']['output_path']+'/blog/rss.xml', feed_xml, item_xml, blog='blog', title='Blog', **params)
+    make_list(config, blog_posts, config['processing']['output_path']+'/blog/rss.xml', feed_xml, item_xml, blog='blog', title='Blog', **params)
 
 
 if __name__ == '__main__':

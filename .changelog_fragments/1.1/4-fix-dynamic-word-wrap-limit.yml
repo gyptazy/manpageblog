@@ -1,0 +1,2 @@
+fixed:
+  - Fix dynamic word wrap limit of words (#4)
