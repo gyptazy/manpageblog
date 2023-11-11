@@ -83,6 +83,15 @@ python3 -m http.server
 ```
 Afterwards, just open your browser and visit `http://localhost:8000`. That's it!
 
+## Screenshots
+### Light Theme
+<img align="left" src="https://gyptazy.ch/wp-content/uploads/2023/11/manpageblog_light.png"/>
+
+
+### Dark Theme
+<img align="left" src="https://gyptazy.ch/wp-content/uploads/2023/11/manpageblog_dark.png"/>
+
+
 ## Motivation
 Like probably the most ones I started with Worpess which is a pretty cool but very bloated software for a personal blog. Running such a software requires multiple application with different dependencies, continuous updates and more resources on the system to serve the whole content. Creating additional backups for the docroot and the database require additional time and efforts. All of this is not really necessary when the content is more or less static and comments are deactivated. A flat file approach provides the optional possibility to run and keep everything in git. Generated HTML pages can easily be served even on low resource systems like Raspberry PI etc.
 
