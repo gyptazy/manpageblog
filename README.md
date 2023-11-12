@@ -1,5 +1,4 @@
 # manpageblog
-A Simple and static blog generator in manpage design - written in Python.
 <img align="left" src="https://gyptazy.ch/wp-content/uploads/2023/11/manpageblog.jpg"/>
 <br>
 
@@ -7,13 +6,18 @@ A Simple and static blog generator in manpage design - written in Python.
 
 
 ## Table of Content
-* General
-* Usage
-    * Options
-    * Config File
-* Quick-Start
-* Motivation
-* License
+- [General](#general)
+- [Usage](#usage)
+  - [Options](#options)
+  - [Config File](#config-file)
+- [Quick-Start](#quick-start)
+- [Screenshots](#screenshots)
+  - [Light Theme](#light-theme)
+  - [Dark Theme](#dark-theme)
+- [Live Demo](#live-demo)
+- [Instances](#instances)
+- [Motivation](#motivation)
+- [License](#license)
 
 ## General
 `manpageblog` is a small, lightweight blog engine written in Python and offers several advantages. Firstly, it provides simplicity and ease of use, making it accessible even for users with limited technical knowledge. The lightweight nature ensures quick installation and minimal resource consumption, making it suitable for various hosting environments. No database is needed at all.
@@ -46,6 +50,7 @@ By creating multiple config files and adjusting them to dedicated output directo
 ### Config File
 The configuration file (default `blog.conf`) provides the following configuration files. You may adjust them to your personal needs:
 
+<!-- TOC ignore:true -->
 #### [general]
 | Option | Example | Description |
 |------|:------:|------:|
@@ -56,6 +61,7 @@ The configuration file (default `blog.conf`) provides the following configuratio
 | copyright | manpageblog | name of a copyright holder |
 | preview_words | 150 (default) | How many words should be displayed within the blog index page |
 
+<!-- TOC ignore:true -->
 #### [social]
 | Option | Example | Description |
 |------|:------:|------:|
@@ -63,6 +69,7 @@ The configuration file (default `blog.conf`) provides the following configuratio
 | twitter | https://twitter.com/manpageblog | Link to Twitter profile|
 | github | https://github.com/manpageblog | Link to GitHub profile |
 
+<!-- TOC ignore:true -->
 #### [processing]
 | Option | Example | Description |
 |------|:------:|------:|
@@ -88,10 +95,21 @@ Afterwards, just open your browser and visit `http://localhost:8000`. That's it!
 ### Light Theme
 <img align="left" src="https://gyptazy.ch/wp-content/uploads/2023/11/manpageblog_light.png"/>
 
-
 ### Dark Theme
 <img align="left" src="https://gyptazy.ch/wp-content/uploads/2023/11/manpageblog_dark.png"/>
 
+## Live Demo
+A live demo of a running manpageblog instance can be found here:<br>
+https://manpageblog.gyptazy.ch
+
+## Instances
+If you are using `manpageblog` you may add your website, blog or site here to share the usage and experience with other users. Of course, only if you like.
+
+**Instances**:
+| Website | User | Description |
+|------|:------:|------:|
+| https://manpageblog.gyptazy.ch | @gyptazy | manpageblog project website |
+| https://gyptazy.ch | @gyptazy | DevOps, coding, cloud and open-source in a geeky way. Find out more about Ansible, Kubernetes, Prometheus and other fancy tools. You see code - I see bugs! |  
 
 ## Motivation
 Like probably the most ones I started with Worpess which is a pretty cool but very bloated software for a personal blog. Running such a software requires multiple application with different dependencies, continuous updates and more resources on the system to serve the whole content. Creating additional backups for the docroot and the database require additional time and efforts. All of this is not really necessary when the content is more or less static and comments are deactivated. A flat file approach provides the optional possibility to run and keep everything in git. Generated HTML pages can easily be served even on low resource systems like Raspberry PI etc.

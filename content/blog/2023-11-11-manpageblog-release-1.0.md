@@ -1,6 +1,5 @@
 <!-- title: manpageblog released in version 1.0 -->
-<!-- meta_description: Initial release of manpageblog 1.0. A simple
-and static blog generator in manpage design written in Python. -->
+<!-- meta_description: Initial release of manpageblog 1.0. A simple and static blog generator in manpage design written in Python. -->
 
 
 <a href="https://github.com/gyptazy/manpageblog">manpageblog</a> finally got its first release. With version
@@ -24,4 +23,5 @@ Of course, manpageblog also supports regular html tags and code markers which ma
 </code>
 
 <br><br>
-Now, you can start blogging. More information can be found on <a href="https://github.com/gyptazy/manpageblog">manpageblog</a>. 
+Now, you can start blogging. More information can be found on <a href="https://github.com/gyptazy/manpageblog">manpageblog</a>.<br>
+<b>Download</b>: <a href="https://github.com/gyptazy/manpageblog">manpageblog</a>
