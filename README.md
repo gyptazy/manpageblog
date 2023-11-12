@@ -1,5 +1,5 @@
 # manpageblog
-<img align="left" src="https://gyptazy.ch/wp-content/uploads/2023/11/manpageblog.jpg"/>
+<img align="left" src="https://cdn.gyptazy.ch/images/manpageblog.jpg"/>
 <br>
 
 <p float="center"><img src="https://img.shields.io/github/license/gyptazy/manpageblog"/><img src="https://img.shields.io/github/contributors/gyptazy/manpageblog"/><img src="https://img.shields.io/github/last-commit/gyptazy/manpageblog/master"/><img src="https://img.shields.io/github/issues-raw/gyptazy/manpageblog"/><img src="https://img.shields.io/github/issues-pr/gyptazy/manpageblog"/></p>
@@ -93,10 +93,10 @@ Afterwards, just open your browser and visit `http://localhost:8000`. That's it!
 
 ## Screenshots
 ### Light Theme
-<img align="left" src="https://gyptazy.ch/wp-content/uploads/2023/11/manpageblog_light.png"/>
+<img align="left" src="https://cdn.gyptazy.ch/images/manpageblog_light.png"/>
 
 ### Dark Theme
-<img align="left" src="https://gyptazy.ch/wp-content/uploads/2023/11/manpageblog_dark.png"/>
+<img align="left" src="https://cdn.gyptazy.ch/images/manpageblog_dark.png"/>
 
 ## Live Demo
 A live demo of a running manpageblog instance can be found here:<br>
