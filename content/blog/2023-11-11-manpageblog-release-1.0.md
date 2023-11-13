@@ -1,9 +1,9 @@
 <!-- title: manpageblog released in version 1.0 -->
 <!-- meta_description: Initial release of manpageblog 1.0. A simple and static blog generator in manpage design written in Python. -->
 
-
 <a href="https://github.com/gyptazy/manpageblog">manpageblog</a> finally got its first release. With version
-1.0 a public release is now present. A small, lightweight blog engine written in Python offers several advantages.
+1.0 a public release is now present. a small, lightweight blog engine written in Python and offers several advantages
+in a look of a man page (Unix like manual page). Firstly, it provides simplicity and ease of use, making it accessible even for users with limited technical knowledge. The lightweight nature ensures quick installation and minimal resource consumption, making it suitable for various hosting environments. No database is needed at all.
 Firstly, it provides simplicity and ease of use, making it accessible even for users with limited technical knowledge.
 The lightweight nature ensures quick installation and minimal resource consumption, making it suitable for various hosting environments.
 <br><br>
@@ -19,7 +19,8 @@ Of course, manpageblog also supports regular html tags and code markers which ma
 <br><br>
 
 <code>
-	yum install wget
+    <!-- title: manpageblog released in version 1.0 -->
+    <!-- meta_description: Initial release of manpageblog 1.0. A simple and static blog generator in manpage design written in Python. -->
 </code>
 
 <br><br>
