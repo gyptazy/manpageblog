@@ -141,7 +141,7 @@ If you are using `manpageblog` you may add your website, blog or site here to sh
 **Instances**:
 | Website | User | Description |
 |------|:------:|------:|
-| https://manpageblog.gyptazy.ch | @gyptazy | manpageblog project website |
+| https://manpageblog.org | @gyptazy | manpageblog project website |
 | https://gyptazy.ch | @gyptazy | DevOps, coding, cloud and open-source in a geeky way. Find out more about Ansible, Kubernetes, Prometheus and other fancy tools. You see code - I see bugs! |  
 
 ## Motivation
