@@ -4,7 +4,12 @@
 <channel>
 <title>{{ title }}</title>
 <link>{{ site_url }}/</link>
-<description>Grow with Technology</description>
+<description>{{ description }}</description>
+<image>
+  <url>{{ site_logo }}</url>
+  <title>{{ title }}</title>
+  <link>{{ site_url }}</link>
+</image>
 
 {{ content }}
 

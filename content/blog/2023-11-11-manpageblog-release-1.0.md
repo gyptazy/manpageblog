@@ -1,6 +1,6 @@
 <!-- title: manpageblog released in version 1.0 -->
 <!-- meta_description: Initial release of manpageblog 1.0. A simple and static blog generator in manpage design written in Python. -->
-<!-- image_url: https://gyptazy.ch/wp-content/webpc-passthru.php?src=https://gyptazy.ch/wp-content/uploads/2023/11/ansible-semaphore-gyptazy.jpg&nocache=1 -->
+<!-- image_url: https://cdn.gyptazy.ch/images/manpageblog.jpg -->
 
 <a href="https://github.com/gyptazy/manpageblog">manpageblog</a> finally got its first release. With version
 1.0 a public release is now present. A small, lightweight blog engine written in Python and offers several advantages

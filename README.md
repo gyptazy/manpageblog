@@ -61,6 +61,7 @@ The configuration file (default `blog.conf`) provides the following configuratio
 | author | admin | A default name for the author of blog posts |
 | copyright | manpageblog | name of a copyright holder |
 | preview_words | 150 (default) | How many words should be displayed within the blog index page |
+| site_logo | https://cdn.gyptazy.ch/images/manpageblog.jpg | URL to a default site logo (e.g. used for RSS) |
 
 <!-- TOC ignore:true -->
 #### [social]
