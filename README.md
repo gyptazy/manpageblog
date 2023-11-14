@@ -107,7 +107,7 @@ of a man page (Unix like manual page).
 #### Element Options
 | Option | Example | Description |
 |------|:------:|------:|
-| title: | manpageblog released in version 1.0 | URI (site url) where this blog is hosted | HTML & OG title |
+| title: | manpageblog released in version 1.0 |  HTML & OG title |
 | meta_description: | Initial release of manpageblog 1.0. A simple and static blog generator in manpage design written in Python. | HTML & OG description |
 | image_url: | https://cdn.gyptazy.ch/manpageblog.jpg | Path to an image file for Open Graph |
 
