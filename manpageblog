@@ -251,6 +251,8 @@ def main():
         'copyright': config['general'].get('copyright', 'manpageblog'),
         'profile_mastodon': config['social'].get('mastodon', 'unknown'),
         'profile_twitter': config['social'].get('twitter', 'unknown'),
+        'image_width': config['opengraph'].get('image_width', '800'),
+        'image_height': config['opengraph'].get('image_hight', '375'),
         'profile_github': config['social'].get('github', 'unknown'),
         'site_url': config['processing']['site_url'],
         'base_path': config['processing']['base_path'],

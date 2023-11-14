@@ -10,6 +10,7 @@
 - [Usage](#usage)
   - [Options](#options)
   - [Config File](#config-file)
+  - [Blog entries (elements)](#blog-entries-elements)
 - [Quick-Start](#quick-start)
 - [Screenshots](#screenshots)
   - [Light Theme](#light-theme)
@@ -70,6 +71,13 @@ The configuration file (default `blog.conf`) provides the following configuratio
 | github | https://github.com/manpageblog | Link to GitHub profile |
 
 <!-- TOC ignore:true -->
+#### [opengraph]
+| Option | Example | Description |
+|------|:------:|------:|
+| image_width | 800 | Image width within the OG preview |
+| image_height | 375 | Image height within the OG preview |
+
+<!-- TOC ignore:true -->
 #### [processing]
 | Option | Example | Description |
 |------|:------:|------:|
@@ -79,6 +87,30 @@ The configuration file (default `blog.conf`) provides the following configuratio
 | template_path | _templates | Path to the manpageblog assets |
 | output_path | docroot | Output path to the generated blog |
 | theme | light | Defines the theme to use |
+
+### Blog entries (elements)
+Within each website element or blog post, a custom title, meta description and an Open Graph image URL can be defined. This ones should be defined
+as comments which will re replaced and integrate during the site creation by the blog engine.
+
+#### Example Post
+```
+<!-- title: manpageblog released in version 1.0 -->
+<!-- meta_description: Initial release of manpageblog 1.0. A simple and static blog generator in manpage design written in Python. -->
+<!-- image_url: https://cdn.gyptazy.ch/manpageblog.jpg -->
+
+manpageblog finally got its first release. With version 1.0 a public release is now present.
+A small, lightweight blog engine written in Python and offers several advantages in a look
+of a man page (Unix like manual page).
+```
+
+<!-- TOC ignore:true -->
+#### Element Options
+| Option | Example | Description |
+|------|:------:|------:|
+| title: | manpageblog released in version 1.0 | URI (site url) where this blog is hosted | HTML & OG title |
+| meta_description: | Initial release of manpageblog 1.0. A simple and static blog generator in manpage design written in Python. | HTML & OG description |
+| image_url: | https://cdn.gyptazy.ch/manpageblog.jpg | Path to an image file for Open Graph |
+
 
 ## Quick-Start
 To give this just a short test you can just run the following commands:
