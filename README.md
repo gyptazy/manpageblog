@@ -133,7 +133,7 @@ Afterwards, just open your browser and visit `http://localhost:8000`. That's it!
 
 ## Live Demo
 A live demo of a running manpageblog instance can be found here:<br>
-https://manpageblog.gyptazy.ch
+https://manpageblog.org
 
 ## Instances
 If you are using `manpageblog` you may add your website, blog or site here to share the usage and experience with other users. Of course, only if you like.
