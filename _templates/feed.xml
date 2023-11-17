@@ -6,7 +6,7 @@
 <link>{{ site_url }}/</link>
 <description>{{ description }}</description>
 <image>
-  <url>{{ site_logo }}</url>
+  <url>{{ logo_site }}</url>
   <title>{{ title }}</title>
   <link>{{ site_url }}</link>
 </image>
