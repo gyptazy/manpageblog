@@ -61,14 +61,16 @@ The configuration file (default `blog.conf`) provides the following configuratio
 | author | admin | A default name for the author of blog posts |
 | copyright | manpageblog | name of a copyright holder |
 | preview_words | 150 (default) | How many words should be displayed within the blog index page |
-| site_logo | https://cdn.gyptazy.ch/images/manpageblog.jpg | URL to a default site logo (e.g. used for RSS) |
+| logo_site | https://cdn.gyptazy.ch/images/manpageblog.jpg | URL to a default site logo (e.g. used for RSS) |
+| logo_favicon | https://cdn.gyptazy.ch/images/manpageblog.jpg | URL to a favicon image |
+| logo_apple_touch | https://cdn.gyptazy.ch/images/manpageblog.jpg | URL to an image for Apple Touch Icon (Webapp) |
 
 <!-- TOC ignore:true -->
 #### [social]
 | Option | Example | Description |
 |------|:------:|------:|
 | mastodon | https://mastodon.bsd.cafe/@manpageblog | Link to Mastodon profile |
-| twitter | https://twitter.com/manpageblog | Link to Twitter profile|
+| twitter | @manpageblog | Twitter profile handle |
 | github | https://github.com/manpageblog | Link to GitHub profile |
 
 <!-- TOC ignore:true -->
