@@ -6,8 +6,10 @@
 several bug fixes and some new features.<br><br>
 
 <b>Features</b><br>
+* Add Twitter card support <br>
 * Add dynamic favicon support<br>
 * Add apple-touch favicon support<br>
+* Add grey-scale theme<br>
 <br>
 <b>Fixes</b><br>
 * Fixed missing language type in html element<br>
