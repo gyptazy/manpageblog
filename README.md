@@ -126,6 +126,18 @@ python3 -m http.server
 ```
 Afterwards, just open your browser and visit `http://localhost:8000`. That's it!
 
+## Docker
+Another possibility to test manpageblog is given by container images. Where you can just rebuild the image by the given `Dockerfile` or by using a ready to use image.
+
+The fastest way results in using the ready to use image with the following commands:
+```
+docker pull cnt-reg.gyptazy.ch/gyptazy/manpageblog:1.2
+docker run -d --name manpageblog12 -p 8080:80 cnt-reg.gyptazy.ch/gyptazy/manpageblog:1.2
+
+# Use service on port tcp/8080
+curl localhost:8080
+```
+
 ## Screenshots
 ### Light Theme
 <img align="left" src="https://cdn.gyptazy.ch/images/manpageblog_light.png"/>
