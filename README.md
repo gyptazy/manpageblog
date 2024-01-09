@@ -58,6 +58,9 @@ The configuration file (default `blog.conf`) provides the following configuratio
 | name | manpageblog | Defines the first part of the title (and HTML title) |
 | subtitle | a small and lightweight blog engine. | Defines the second part of the title (and HTML title)  |
 | description | This is the blog of manpageblog where you can find more information | Defines the HTML meta descriptions (for searchengines) |
+| keywords | manpageblog, simple, easy, lightweight, blog engine | Keywords and tags as a comma separated list |
+| keywords_show | `meta` or `html` | Meta: Keywords will only be used for `meta` section. If `html` a tag section will be created |
+| robots | `noindex,nofollow` or `index,follow` | Defines if a page should be indexed by search engines (can be set for each site) |
 | author | admin | A default name for the author of blog posts |
 | copyright | manpageblog | name of a copyright holder |
 | preview_words | 150 (default) | How many words should be displayed within the blog index page |

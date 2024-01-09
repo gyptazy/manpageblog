@@ -246,6 +246,9 @@ def main():
         '_version': '1.1',
         'name': config['general']['name'],
         'description': config['general']['description'],
+        'keywords': config['general'].get('keywords', 'unknown'),
+        'keywords_show': config['general'].get('keywords_show', 'meta'),
+        'robots': config['general'].get('robots', 'noindex,nofollow'),
         'subtitle': config['general']['subtitle'],
         'author': config['general'].get('author', 'unknown'),
         'copyright': config['general'].get('copyright', 'manpageblog'),
@@ -264,7 +267,10 @@ def main():
     }
 
     # Load layouts
-    page_layout = fread(f'{config["processing"]["template_path"]}/page.html')
+    if params.get('keywords_show') != 'meta':
+        page_layout = fread(f'{config["processing"]["template_path"]}/page_tags.html')
+    else:
+        page_layout = fread(f'{config["processing"]["template_path"]}/page.html')
     post_layout = fread(f'{config["processing"]["template_path"]}/post.html')
     list_layout = fread(f'{config["processing"]["template_path"]}/list.html')
     item_layout = fread(f'{config["processing"]["template_path"]}/item.html')
