@@ -1,6 +1,7 @@
 <item>
 <title>{{ title }}</title>
 <link>{{ site_url }}/{{ blog }}/{{ slug }}/</link>
+<guid>{{ site_url }}/{{ blog }}/{{ slug }}/</guid>
 <description>
 <![CDATA[
 <p>
