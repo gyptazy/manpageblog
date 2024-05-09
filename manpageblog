@@ -161,8 +161,9 @@ def read_content(filename):
     # Convert Markdown content to HTML.
     if filename.endswith(('.md', '.mkd', '.mkdn', '.mdown', '.markdown')):
         try:
-            import commonmark
-            text = commonmark.commonmark(text)
+            from markdown_it import MarkdownIt
+            md = MarkdownIt()
+            text = md.render(text)
         except ImportError as error:
             log('WARNING: Cannot render Markdown in {}: {}', filename, str(error))
 
