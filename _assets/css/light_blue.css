@@ -1,0 +1,6 @@
+/* Theme: Light Blue */
+:root {
+    --main-text-color: #333;
+    --main-bg-color: whitesmoke; /* #f5f5f5 */
+    --links-color: cornflowerblue; /* #6495ed */
+}
