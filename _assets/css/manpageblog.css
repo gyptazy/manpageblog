@@ -1,0 +1,41 @@
+/**
+ * Default CSS file for: manpageblog
+ * Fallback values: Light (default theme)
+ */
+body {
+    font: 300 normal 14px/1.25em monospace;
+    font-family: Menlo, 'DejaVu Sans Mono', Consolas, 'Liberation Mono', monospace;
+    color: var(--main-text-color, #333);
+    background: var(--main-bg-color, #fff);
+}
+
+a:link, a:visited {
+    color: var(--links-color, #6d6d6d);
+    text-decoration: none;
+}
+
+a:hover, a:active { text-decoration: underline; }
+
+a, b, strong { font-weight: 600; }
+
+img { max-width: 100%; height: auto; }
+
+header section, footer section, manpage {
+    max-width: 40em;
+    margin-left: 0%;
+}
+
+main, nav section, name section {
+    max-width: 60em;
+    margin-left: 5%;
+    margin-right: auto;
+    padding: 0 0.5em;
+}
+
+code {
+    font-style: italic;
+    max-width: 60em;
+    margin-left: 10%;
+    margin-right: auto;
+    padding: 0 0.5em;
+}
