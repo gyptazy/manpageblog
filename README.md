@@ -57,7 +57,7 @@ The configuration file (default `blog.conf`) provides the following configuratio
 |------|:------:|------:|
 | name | manpageblog | Defines the first part of the title (and HTML title) |
 | subtitle | a small and lightweight blog engine. | Defines the second part of the title (and HTML title)  |
-| description | This is the blog of manpageblog where you can find more information | Defines the HTML meta descriptions (for searchengines) |
+| description | This is the blog of manpageblog where you can find more information | Defines the HTML meta descriptions (for searchengines) |
 | keywords | manpageblog, simple, easy, lightweight, blog engine | Keywords and tags as a comma separated list |
 | keywords_show | `meta` or `html` | Meta: Keywords will only be used for `meta` section. If `html` a tag section will be created |
 | robots | `noindex,nofollow` or `index,follow` | Defines if a page should be indexed by search engines (can be set for each site) |
@@ -160,6 +160,7 @@ If you are using `manpageblog` you may add your website, blog or site here to sh
 |------|:------:|------:|
 | https://manpageblog.org | @gyptazy | manpageblog project website |
 | https://gyptazy.ch | @gyptazy | DevOps, coding, cloud and open-source in a geeky way. Find out more about Ansible, Kubernetes, Prometheus and other fancy tools. You see code - I see bugs! |  
+| https://boxybsd.com | BoxyBSD | BoxyBSD is a destination for free BSD-focused solutions and services for the community. |
 
 ## Motivation
 Like probably the most ones I started with `Wordpress` which is a pretty cool but also a very bloated software for a personal blog. Running such a software requires multiple application with different dependencies, continuous updates and more resources on the system to serve the whole content. Creating additional backups of the docroot and the database require additional time and efforts. All of this is not really necessary when the content is more or less static and comments are deactivated or not used. A flat file approach provides the optional possibility to run and keep everything in git. Generated HTML pages can easily be served even on low resource systems. While this way of blogging mostly targets tech-enthusiasts that are already working on Unix-like systems the idea was to provide a blog engine in a layout and theming of a Unix-like `man page` (manual page). Man pages always align to the same formatting based on `troff` which make man pages look always the same. While man pages provide information of a cli command the idea was to adapt this to a blog. A blog also provides information and especially when serving tech related content it makes much sense to provide it in a similar way. This is the story of how `manpageblog` was born.

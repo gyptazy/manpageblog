@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.4] - 2024-06-06
+
+### Added
+
+- Add link tag for RSS feed [#21]
+
+### Fixed
+
+- Mobile website layout [#20]
+- Optimized retro browser support [#19]
+- Replace commonmark (deprecated) with markdown_it [#22]
+- CSS and font improvements [#24]
+
+
 ## [1.3.1] - 2024-01-14
 
 ### Fixed
