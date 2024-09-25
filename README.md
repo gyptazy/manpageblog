@@ -1,5 +1,5 @@
 # manpageblog
-<img align="left" src="https://cdn.gyptazy.ch/images/manpageblog.jpg"/>
+<img align="left" src="https://cdn.gyptazy.com/images/manpageblog.jpg"/>
 <br>
 
 <p float="center"><img src="https://img.shields.io/github/license/gyptazy/manpageblog"/><img src="https://img.shields.io/github/contributors/gyptazy/manpageblog"/><img src="https://img.shields.io/github/last-commit/gyptazy/manpageblog/master"/><img src="https://img.shields.io/github/issues-raw/gyptazy/manpageblog"/><img src="https://img.shields.io/github/issues-pr/gyptazy/manpageblog"/></p>
@@ -102,7 +102,7 @@ as comments which will re replaced and integrate during the site creation by the
 ```
 <!-- title: manpageblog released in version 1.0 -->
 <!-- meta_description: Initial release of manpageblog 1.0. A simple and static blog generator in manpage design written in Python. -->
-<!-- image_url: https://cdn.gyptazy.ch/manpageblog.jpg -->
+<!-- image_url: https://cdn.gyptazy.com/manpageblog.jpg -->
 
 manpageblog finally got its first release. With version 1.0 a public release is now present.
 A small, lightweight blog engine written in Python and offers several advantages in a look
@@ -143,10 +143,10 @@ curl localhost:8080
 
 ## Screenshots
 ### Light Theme
-<img align="left" src="https://cdn.gyptazy.ch/images/manpageblog_light.png"/>
+<img align="left" src="https://cdn.gyptazy.com/images/manpageblog_light.png"/>
 
 ### Dark Theme
-<img align="left" src="https://cdn.gyptazy.ch/images/manpageblog_dark.png"/>
+<img align="left" src="https://cdn.gyptazy.com/images/manpageblog_dark.png"/>
 
 ## Live Demo
 A live demo of a running manpageblog instance can be found here:<br>
