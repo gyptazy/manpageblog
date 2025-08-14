@@ -227,6 +227,48 @@ def make_list(config, posts, dst, list_layout, item_layout, **params):
     fwrite(dst_path, output)
 
 
+def paginate_list(config, posts, dst_template, list_layout, item_layout, per_page, **params):
+    """Generate paginated blog list pages"""
+    total_pages = (len(posts) + per_page - 1) // per_page
+
+    for page_num in range(total_pages):
+        start_idx = page_num * per_page
+        end_idx = start_idx + per_page
+        page_posts = posts[start_idx:end_idx]
+
+        items = []
+        for post in page_posts:
+            item_params = dict(params, **post)
+            item_params['summary'] = truncate(post['content'], int(config['general'].get('preview_words', 150)))
+            items.append(render(item_layout, **item_params))
+
+        page_params = dict(params)
+        page_params['content'] = ''.join(items)
+        page_params['current_page'] = page_num + 1
+        page_params['total_pages'] = total_pages
+        page_params['prev_page'] = page_num if page_num > 0 else None
+        page_params['next_page'] = page_num + 2 if page_num + 1 < total_pages else None
+
+
+        pagination_html = ""
+        if page_params['prev_page']:
+            prev_link = "index.html" if page_params['prev_page'] == 1 else f"page{page_params['prev_page']}.html"
+            pagination_html += f'<a href="{prev_link}">Previous</a> '
+        if page_params['next_page']:
+            pagination_html += f'<a href="page{page_params["next_page"]}.html">Next</a>'
+
+        page_params['pagination'] = pagination_html
+
+        if page_num == 0:
+            dst_path = render(dst_template, **page_params)
+        else:
+            dst_path = dst_template.replace("index.html", f"page{page_num+1}.html")
+
+        output = render(list_layout, **page_params)
+        log('Rendering list page {} => {} ...', page_num + 1, dst_path)
+        fwrite(dst_path, output)
+
+
 def main():
     """ Run manpageblog """
     arguments = parse_arguments()
@@ -289,8 +331,10 @@ def main():
     # Create blogs
     blog_posts = make_pages('content/blog/*.md',   config['processing']['output_path']+'/blog/{{ slug }}/index.html', post_layout, blog='blog', **params)
 
-    # Create blog list pages
-    make_list(config, blog_posts, config['processing']['output_path']+'/blog/index.html', list_layout, item_layout, blog='blog', title='Blog', **params)
+    # Create paginated blog list pages (3 posts per page)
+    paginate_list(config, blog_posts, config['processing']['output_path']+'/blog/index.html',
+                list_layout, item_layout, per_page=int(config['general'].get('pagination', 10)), blog='blog', title='Blog', **params)
+
 
     # Create RSS feeds
     make_list(config, blog_posts, config['processing']['output_path']+'/blog/rss.xml', feed_xml, item_xml, blog='blog', title='Blog', **params)
