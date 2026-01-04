@@ -146,8 +146,10 @@ def read_content(filename):
     date_slug = os.path.basename(filename).split('.')[0]
     match = re.search(r'^(?:(\d\d\d\d-\d\d-\d\d)-)?(.+)$', date_slug)
     content = {
-        'date': match.group(1) or '1970-01-01',
-        'slug': match.group(2),
+        'date': match.group(1) or '2025-01-01',
+        'date_published': f'{match.group(1)}T03:01:01+00:00',
+        'date_modified': f'{match.group(1)}T03:01:01+00:00',
+        'slug': '' if match.group(2) == '_index' else match.group(2),
     }
 
     # Read headers.
@@ -189,18 +191,25 @@ def make_pages(src, dst, layout, **params):
 
     for src_path in glob.glob(src):
         content = read_content(src_path)
-
         page_params = dict(params, **content)
 
-        # Populate placeholders in content if content-rendering is enabled.
         if page_params.get('render') == 'yes':
             rendered_content = render(page_params['content'], **page_params)
             page_params['content'] = rendered_content
             content['content'] = rendered_content
 
         items.append(content)
-
         dst_path = render(dst, **page_params)
+
+        site_url = page_params['site_url'].rstrip('/')
+        output_root = page_params['output_path'].rstrip('/')
+        rel = os.path.relpath(dst_path, output_root)
+        rel = rel.replace('index.html', '')
+        rel = rel.replace(os.sep, '/')
+
+        page_params['page_url'] = site_url + '/' + rel
+        page_params['page_url'] = page_params['page_url'].replace('//', '/').replace(':/', '://')
+
         output = render(layout, **page_params)
 
         log('Rendering {} => {} ...', src_path, dst_path)
@@ -227,6 +236,62 @@ def make_list(config, posts, dst, list_layout, item_layout, **params):
     fwrite(dst_path, output)
 
 
+def make_sitemap(pages, posts, output_path, site_url):
+    """ Generate sitemap.xml for the site """
+    site_url = site_url.rstrip('/')
+    urls = []
+
+    for page in pages:
+        page_url = page.get('page_url') or f"{site_url}/{page.get('slug','')}/"
+        page_url = page_url.replace('//', '/').replace(':/', '://')
+        lastmod = page.get('date_modified', page.get('date_published', ''))
+        lastmod = lastmod.split('T')[0] if 'T' in lastmod else lastmod
+
+        if page.get('slug', '') in ['', 'home']:
+            priority = '1.0'
+        else:
+            priority = '0.8'
+
+        urls.append({
+            'loc': page_url,
+            'lastmod': lastmod,
+            'changefreq': 'weekly',
+            'priority': priority
+        })
+
+    for post in posts:
+        page_url = post.get('page_url') or f"{site_url}/blog/{post.get('slug','')}/"
+        page_url = page_url.replace('//', '/').replace(':/', '://')
+        lastmod = post.get('date_modified', page.get('date_published', ''))
+        lastmod = lastmod.split('T')[0] if 'T' in lastmod else lastmod
+
+        urls.append({
+            'loc': page_url,
+            'lastmod': lastmod,
+            'changefreq': 'monthly',
+            'priority': '0.6'
+        })
+
+    sitemap = ['<?xml version="1.0" encoding="UTF-8"?>']
+    sitemap.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+
+    for url in urls:
+        sitemap.append('  <url>')
+        sitemap.append(f"    <loc>{url['loc']}</loc>")
+        if url.get('lastmod'):
+            sitemap.append(f"    <lastmod>{url['lastmod']}</lastmod>")
+        if url.get('changefreq'):
+            sitemap.append(f"    <changefreq>{url['changefreq']}</changefreq>")
+        if url.get('priority'):
+            sitemap.append(f"    <priority>{url['priority']}</priority>")
+        sitemap.append('  </url>')
+
+    sitemap.append('</urlset>')
+    sitemap_path = os.path.join(output_path, 'sitemap.xml')
+    fwrite(sitemap_path, '\n'.join(sitemap))
+    log('Sitemap generated at {}', sitemap_path)
+
+
 def paginate_list(config, posts, dst_template, list_layout, item_layout, per_page, **params):
     """Generate paginated blog list pages"""
     total_pages = (len(posts) + per_page - 1) // per_page
@@ -249,20 +314,25 @@ def paginate_list(config, posts, dst_template, list_layout, item_layout, per_pag
         page_params['prev_page'] = page_num if page_num > 0 else None
         page_params['next_page'] = page_num + 2 if page_num + 1 < total_pages else None
 
-
         pagination_html = ""
         if page_params['prev_page']:
             prev_link = "index.html" if page_params['prev_page'] == 1 else f"page{page_params['prev_page']}.html"
             pagination_html += f'<a href="{prev_link}">Previous</a> '
         if page_params['next_page']:
             pagination_html += f'<a href="page{page_params["next_page"]}.html">Next</a>'
-
         page_params['pagination'] = pagination_html
 
         if page_num == 0:
             dst_path = render(dst_template, **page_params)
         else:
             dst_path = dst_template.replace("index.html", f"page{page_num+1}.html")
+
+        site_url = page_params['site_url'].rstrip('/')
+        output_root = page_params['output_path'].rstrip('/')
+        rel = os.path.relpath(dst_path, output_root)
+        rel = rel.replace('index.html', '').replace(os.sep, '/')
+        page_params['page_url'] = site_url + '/' + rel
+        page_params['page_url'] = page_params['page_url'].replace('//', '/').replace(':/', '://')
 
         output = render(list_layout, **page_params)
         log('Rendering list page {} => {} ...', page_num + 1, dst_path)
@@ -286,11 +356,13 @@ def main():
 
     # Remap vars from config
     params = {
-        '_version': '1.1',
+        '_version': '1.6',
         'name': config['general']['name'],
         'description': config['general']['description'],
+        'meta_keywords': config['general'].get('keywords', 'unknown'),
         'keywords': config['general'].get('keywords', 'unknown'),
         'keywords_show': config['general'].get('keywords_show', 'meta'),
+        'ld_categories': config['general'].get('ld_categories', 'unknown'),
         'robots': config['general'].get('robots', 'noindex,nofollow'),
         'subtitle': config['general']['subtitle'],
         'author': config['general'].get('author', 'unknown'),
@@ -298,15 +370,20 @@ def main():
         'logo_site': config['general'].get('logo_site', ''),
         'logo_favicon': config['general'].get('logo_favicon', ''),
         'logo_apple_touch': config['general'].get('logo_apple_touch', ''),
-        'profile_mastodon': config['social'].get('mastodon', 'unknown'),
-        'profile_twitter': config['social'].get('twitter', 'unknown'),
+        'fediverse': config['social'].get('fediverse', 'unknown'),
+        'fediverse_url': config['social'].get('fediverse_url', 'unknown'),
+        'twitter': config['social'].get('twitter', 'unknown'),
+        'github': config['social'].get('github', 'unknown'),
         'image_width': config['opengraph'].get('image_width', '800'),
         'image_height': config['opengraph'].get('image_hight', '375'),
-        'profile_github': config['social'].get('github', 'unknown'),
         'site_url': config['processing']['site_url'],
         'base_path': config['processing']['base_path'],
+        'output_path': config['processing']['output_path'],
         'theme': config['processing'].get('theme', 'light'),
-        'current_year': datetime.datetime.now().year
+        'current_year': datetime.datetime.now().year,
+        'date_published': "2025-01-04T15:52:42+0100",
+        'slug': '',
+        'date_modified': datetime.datetime.now(datetime.timezone.utc).astimezone().strftime('%Y-%m-%dT%H:%M:%S%z'),
     }
 
     # Load layouts
@@ -335,10 +412,12 @@ def main():
     paginate_list(config, blog_posts, config['processing']['output_path']+'/blog/index.html',
                 list_layout, item_layout, per_page=int(config['general'].get('pagination', 10)), blog='blog', title='Blog', **params)
 
-
     # Create RSS feeds
     make_list(config, blog_posts, config['processing']['output_path']+'/blog/rss.xml', feed_xml, item_xml, blog='blog', title='Blog', **params)
 
+    # Create sitemap
+    site_pages = make_pages('content/_index.html', config['processing']['output_path']+'/index.html', page_layout, **params)
+    make_sitemap(site_pages, blog_posts, config['processing']['output_path'], params['site_url'])
 
 if __name__ == '__main__':
     main()
