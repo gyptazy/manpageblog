@@ -1,56 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{{ title }} | {{ subtitle }}</title>
-    <meta name="description" content="{{ meta_description }}"/>
-    <meta name="keywords" content="{{ keywords }}"/>
-    <meta name="robots" content="{{ robots }}">
-    <meta property="og:image" content="{{ image_url }}"/>
-    <meta property="og:title" content="{{ title }}"/>
-    <meta property="og:description" content="{{ meta_description }}"/>
-    <meta property="og:image:width" content="{{ image_width }}"/>
-    <meta property="og:image:height" content="{{ image_height }}"/>
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="{{ profile_twitter }}" />
-    <meta name="twitter:title" content="{{ title }}" />
-    <meta name="twitter:description" content="{{ meta_description }}" />
-    <meta name="twitter:image" content="{{ image_url }}" />
+    <title>{{ title }}</title>
     <meta charset="UTF-8">
+    <meta name="description" content="{{ meta_description }}">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="{{ image_url }}">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ meta_description }}">
+    <meta property="og:image:width" content="{{ image_width }}">
+    <meta property="og:image:height" content="{{ image_height }}">
+    <meta property="article:published_time" content="{{ date_published }}">
+    <meta property="article:modified_time" content="{{ date_modified }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ meta_description }}">
+    <meta name="twitter:image" content="{{ image_url }}">
+    <meta name="twitter:site" content="{{ twitter }}">
     <meta name="viewport" content="width=device-width">
     <meta name="robots" content="INDEX,FOLLOW">
-    <meta name="generator" content="manpageblog {{ _version }}" />
-    <link rel="stylesheet" type="text/css" href="{{ base_path }}/assets/css/{{ theme }}.css">
-    <link rel="stylesheet" type="text/css" href="{{ base_path }}/assets/css/manpageblog.css">
-    <link rel="alternate" type="application/rss+xml"  title="RSS Feed"  href="{{ site_url }}/blog/rss.xml" />
-    <link rel="shortcut icon" type="image/png" href="{{ logo_favicon }}"/>
-    <link rel="icon" type="image/png" href="{{ logo_favicon }}"/>
-    <link rel="apple-touch-icon" href="{{ logo_apple_touch }}"/>
-    <link href="{{ profile_mastodon }}" rel="me">
+    <meta name="generator" content="manpageblog {{ _version }}">
+    <meta name="fediverse:creator" content="{{ fediverse}}">
+    <link rel="alternate" type="application/rss+xml"  title="RSS Feed"  href="{{ site_url }}/blog/rss.xml">
+    <link rel="shortcut icon" type="image/png" href="{{ logo_favicon }}">
+    <link rel="icon" type="image/png" href="{{ logo_favicon }}">
+    <link rel="apple-touch-icon" href="{{ logo_apple_touch }}">
+    <link rel="canonical" href="{{ page_url }}">
+    <link href="{{ fediverse_url }}" rel="me">
+    <link rel="stylesheet" type="text/css" href="{{ base_path }}/assets/css/style.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{{ title }}",
+        "description": "{{ meta_description }}",
+        "keywords": "{{ meta_keywords }}",
+        "image": "{{ image_url }}",
+        "articleSection": [{{ ld_categories }}],
+        "author": {
+            "@type": "Person",
+            "name": "{{ author }}"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "{{ author }}",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{ image_url }}"
+            }
+        },
+        "datePublished": "{{ date_published }}",
+        "dateModified": "{{ date_modified }}",
+        "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ page_url }}"
+        }
+    }
+    </script>
 </head>
 
 <body id="{{ slug }}">
 
-<manpage>
+<section class="manpage">
     <b>NAME</b><br>
-</manpage>
+</section>
 
-<name>
-    <section>
-        <span class="name">
-            {{ name }}
-        </span>
-    </section>
-</name>
+<section class="name-section">
+    <span class="name">
+        {{ name }}
+    </span>
+</section>
 
-<manpage>
+<section class="manpage">
     <br><b>OPTIONS</b><br>
-</manpage>
-
+</section>
 
 <nav>
 <section>
     <span class="home">
-        <a href="{{ base_path }}/">[home]</a>
+        <a href="{{ base_path }}/">[root]</a>
         <a href="{{ base_path }}/blog/">[blog]</a>
         <a href="{{ base_path }}/about/">[about]</a>
         <a href="{{ base_path }}/contact/">[contact]</a>
@@ -58,18 +86,18 @@
 </section>
 </nav>
 
-<manpage>
+<section class="manpage">
     <br><b>CONTENT</b><br>
-</manpage>
+</section>
 
 <main>
 {{ content }}
 </main>
 
 <footer>
-<section>
-<p>&copy; {{ current_year }} {{ copyright }}</p>
-</section>
+    <section>
+        <p>&copy; {{ current_year }} {{ copyright }} [<small><a href="{{ site_url }}/blog/rss.xml">rss</a>|<a href="{{ base_path }}/legal-notice/">legal-notice</a>|<a href="{{ base_path }}/privacy/">privacy</a>]</small></p>
+    </section>
 </footer>
 
 </body>
