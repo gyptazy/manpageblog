@@ -1,5 +1,5 @@
 # manpageblog
-<img align="left" src="https://cdn.gyptazy.com/images/manpageblog.jpg"/>
+<img align="left" src="https://cdn.gyptazy.com/img/manpageblog.jpg"/>
 <br>
 
 <p float="center"><img src="https://img.shields.io/github/license/gyptazy/manpageblog"/><img src="https://img.shields.io/github/contributors/gyptazy/manpageblog"/><img src="https://img.shields.io/github/last-commit/gyptazy/manpageblog/master"/><img src="https://img.shields.io/github/issues-raw/gyptazy/manpageblog"/><img src="https://img.shields.io/github/issues-pr/gyptazy/manpageblog"/></p>
