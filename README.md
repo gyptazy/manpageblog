@@ -144,24 +144,11 @@ curl localhost:8080
 
 ## Screenshots
 ### Light Theme
-<img align="left" src="https://cdn.gyptazy.com/images/manpageblog_light.png"/>
-
-### Dark Theme
-<img align="left" src="https://cdn.gyptazy.com/images/manpageblog_dark.png"/>
+<img align="left" src="https://cdn.gyptazy.com/img/manpageblog-demo.jpg"/>
 
 ## Live Demo
 A live demo of a running manpageblog instance can be found here:<br>
-https://manpageblog.org
-
-## Instances
-If you are using `manpageblog` you may add your website, blog or site here to share the usage and experience with other users. Of course, only if you like.
-
-**Instances**:
-| Website | User | Description |
-|------|:------:|------:|
-| https://manpageblog.org | @gyptazy | manpageblog project website |
-| https://gyptazy.ch | @gyptazy | DevOps, coding, cloud and open-source in a geeky way. Find out more about Ansible, Kubernetes, Prometheus and other fancy tools. You see code - I see bugs! |  
-| https://boxybsd.com | BoxyBSD | BoxyBSD is a destination for free BSD-focused solutions and services for the community. |
+https://gyptazy.com
 
 ## Motivation
 Like probably the most ones I started with `Wordpress` which is a pretty cool but also a very bloated software for a personal blog. Running such a software requires multiple application with different dependencies, continuous updates and more resources on the system to serve the whole content. Creating additional backups of the docroot and the database require additional time and efforts. All of this is not really necessary when the content is more or less static and comments are deactivated or not used. A flat file approach provides the optional possibility to run and keep everything in git. Generated HTML pages can easily be served even on low resource systems. While this way of blogging mostly targets tech-enthusiasts that are already working on Unix-like systems the idea was to provide a blog engine in a layout and theming of a Unix-like `man page` (manual page). Man pages always align to the same formatting based on `troff` which make man pages look always the same. While man pages provide information of a cli command the idea was to adapt this to a blog. A blog also provides information and especially when serving tech related content it makes much sense to provide it in a similar way. This is the story of how `manpageblog` was born.
